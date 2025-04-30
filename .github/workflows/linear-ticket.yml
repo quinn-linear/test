@@ -1,0 +1,21 @@
+name: Find Linear Ticket
+on: [pull_request]
+
+jobs:
+  find-ticket:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Find Linear Ticket
+        env:
+          LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+        run: |
+          # Get PR description
+          PR_DESC=$(gh pr view ${{ github.event.pull_request.number }} --json body -q .body)
+          
+          # Extract ticket ID
+          TICKET_ID=$(echo $PR_DESC | grep -oE '[A-Z]+-[0-9]+')
+          
+          # Print the ticket ID
+          echo "Found Linear ticket: $TICKET_ID"
