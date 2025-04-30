@@ -8,7 +8,8 @@ jobs:
       - name: Find Linear Ticket
         env:
           LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
-          TICKET_ID: "RRE-16"  # Specific ticket to find
+          GH_TOKEN: ${{ github.token }}
+          TICKET_ID: "RRE-16"
         run: |
           # Get PR description
           PR_DESC=$(gh pr view ${{ github.event.pull_request.number }} --json body -q .body)
