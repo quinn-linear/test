@@ -1,0 +1,21 @@
+name: Find Specific Linear Ticket
+on: [pull_request]
+
+jobs:
+  find-ticket:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find Linear Ticket
+        env:
+          LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+          TICKET_ID: "RRE-16"  # Specific ticket to find
+        run: |
+          # Get PR description
+          PR_DESC=$(gh pr view ${{ github.event.pull_request.number }} --json body -q .body)
+          
+          # Look for specific ticket ID
+          if echo $PR_DESC | grep -q $TICKET_ID; then
+            echo "Found ticket $TICKET_ID in PR description"
+          else
+            echo "Ticket $TICKET_ID not found in PR description"
+          fi
