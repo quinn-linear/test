@@ -4,6 +4,12 @@
 
 This document provides guidelines and a template for creating clear, actionable issues in our project tracking system. Well-structured issues help the team understand requirements, scope, and acceptance criteria.
 
+> **Note**: GitHub automatically offers issue templates from the `.github/ISSUE_TEMPLATE/` directory when creating new issues. The following templates are available:
+>
+> * [Standard Issue Template](./.github/ISSUE_TEMPLATE/issue_template.md) - For general tasks and issues
+> * [Bug Report Template](./.github/ISSUE_TEMPLATE/bug_report.md) - For reporting bugs
+> * [Feature Request Template](./.github/ISSUE_TEMPLATE/feature_request.md) - For suggesting new features
+
 ## Issue Title Guidelines
 
 A good issue title should:
@@ -20,6 +26,8 @@ Examples:
 - ❌ "bug" (too general)
 
 ## Issue Description Template
+
+Our standard issue template (available when creating a new issue in GitHub) follows this structure:
 
 ```markdown
 ### Overview

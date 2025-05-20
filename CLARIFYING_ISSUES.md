@@ -20,7 +20,7 @@ An issue may need clarification if it:
 When encountering an unclear issue:
 1. Tag the issue creator and relevant stakeholders
 2. Request specific information about what needs to be addressed
-3. Reference the [Issue Template](./ISSUE_TEMPLATE.md) for guidance
+3. Reference the [Issue Template and Guidelines](./ISSUE_TEMPLATE.md) for guidance
 
 ### 2. Structured Clarification
 
@@ -76,4 +76,5 @@ Would you be available for a 15-minute call to discuss this further? Alternative
 ## Resources
 
 - [Issue Template and Guidelines](./ISSUE_TEMPLATE.md)
+- [GitHub Issue Template](./.github/ISSUE_TEMPLATE/issue_template.md)
 - [Example Well-Structured Issue](./EXAMPLE_ISSUE.md)
