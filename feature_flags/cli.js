@@ -15,19 +15,21 @@
  * node cli.js check new_themes user123      - Check if a feature is enabled for a user
  */
 
+// Parse command line arguments and extract environment BEFORE requiring the module
+const rawArgs = process.argv.slice(2);
+const envIndex = rawArgs.indexOf('--env');
+if (envIndex !== -1) {
+  process.env.NODE_ENV = rawArgs[envIndex + 1] || 'development';
+  // Remove the environment arguments from the args array
+  rawArgs.splice(envIndex, 2);
+}
+
+// Now require the module with the environment already set
 const featureFlags = require('./index');
 
-// Parse command line arguments
-const args = process.argv.slice(2);
+// Continue with command processing
+const args = rawArgs;
 const command = args[0];
-
-// Set environment from command line or use default
-if (args.includes('--env')) {
-  const envIndex = args.indexOf('--env');
-  process.env.NODE_ENV = args[envIndex + 1];
-  // Remove the environment arguments from the args array
-  args.splice(envIndex, 2);
-}
 
 // Handle commands
 switch (command) {
@@ -116,7 +118,7 @@ function listFeatureFlags() {
 
 function enableFeatureFlag(flagName) {
   const environment = process.env.NODE_ENV || 'development';
-  const result = featureFlags.setEnabled(flagName, true);
+  const result = featureFlags.setEnabled(flagName, true, environment);
   
   if (result) {
     console.log(`Successfully enabled '${flagName}' in '${environment}' environment.`);
@@ -125,7 +127,7 @@ function enableFeatureFlag(flagName) {
 
 function disableFeatureFlag(flagName) {
   const environment = process.env.NODE_ENV || 'development';
-  const result = featureFlags.setEnabled(flagName, false);
+  const result = featureFlags.setEnabled(flagName, false, environment);
   
   if (result) {
     console.log(`Successfully disabled '${flagName}' in '${environment}' environment.`);
@@ -134,7 +136,7 @@ function disableFeatureFlag(flagName) {
 
 function addUser(flagName, userId) {
   const environment = process.env.NODE_ENV || 'development';
-  const result = featureFlags.addUser(flagName, userId);
+  const result = featureFlags.addUser(flagName, userId, environment);
   
   if (result) {
     console.log(`Successfully added user '${userId}' to '${flagName}' in '${environment}' environment.`);
@@ -143,7 +145,7 @@ function addUser(flagName, userId) {
 
 function removeUser(flagName, userId) {
   const environment = process.env.NODE_ENV || 'development';
-  const result = featureFlags.removeUser(flagName, userId);
+  const result = featureFlags.removeUser(flagName, userId, environment);
   
   if (result) {
     console.log(`Successfully removed user '${userId}' from '${flagName}' in '${environment}' environment.`);
@@ -152,7 +154,7 @@ function removeUser(flagName, userId) {
 
 function getUsers(flagName) {
   const environment = process.env.NODE_ENV || 'development';
-  const users = featureFlags.getUsers(flagName);
+  const users = featureFlags.getUsers(flagName, environment);
   
   console.log(`Users for feature flag '${flagName}' in '${environment}' environment:`);
   
@@ -168,7 +170,7 @@ function getUsers(flagName) {
 
 function checkFeatureFlag(flagName, userId) {
   const environment = process.env.NODE_ENV || 'development';
-  const isEnabled = featureFlags.isEnabled(flagName, userId);
+  const isEnabled = featureFlags.isEnabled(flagName, userId, environment);
   
   console.log(`Feature flag '${flagName}' is ${isEnabled ? 'enabled' : 'disabled'} for user '${userId}' in '${environment}' environment.`);
 }

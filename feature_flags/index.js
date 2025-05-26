@@ -12,6 +12,7 @@ class FeatureFlags {
   constructor() {
     this.config = this.loadConfig();
     this.environment = process.env.NODE_ENV || 'development';
+    this.modifiedEnvironment = null; // Tracks which environment is being modified
   }
 
   /**
@@ -30,11 +31,34 @@ class FeatureFlags {
 
   /**
    * Save the current configuration to the JSON file
+   * Reloads the latest config before saving to prevent overwriting concurrent changes
    */
   saveConfig() {
     try {
       const configPath = path.join(__dirname, 'config.json');
-      fs.writeFileSync(configPath, JSON.stringify(this.config, null, 2), 'utf8');
+      
+      // Reload the latest configuration from disk to avoid overwriting concurrent changes
+      const latestConfig = this.loadConfig();
+      
+      // Update only the parts we've modified in this instance
+      if (this.modifiedEnvironment && 
+          latestConfig.environments && 
+          latestConfig.environments[this.modifiedEnvironment]) {
+        latestConfig.environments[this.modifiedEnvironment] = this.config.environments[this.modifiedEnvironment];
+      } else {
+        // If no specific environment was modified or if we can't determine it, 
+        // use our entire config (less safe for concurrent operations)
+        console.warn('Warning: Saving entire configuration. This may overwrite concurrent changes.');
+      }
+      
+      // Write the updated configuration back to disk
+      fs.writeFileSync(configPath, JSON.stringify(latestConfig, null, 2), 'utf8');
+      
+      // Update our instance with the latest config
+      this.config = latestConfig;
+      
+      // Reset the modified environment tracking
+      this.modifiedEnvironment = null;
     } catch (error) {
       console.error('Error saving feature flag configuration:', error);
     }
@@ -84,6 +108,12 @@ class FeatureFlags {
   addUser(flagName, userId, env = null) {
     const environment = env || this.environment;
     
+    // Track which environment we're modifying for the saveConfig method
+    this.modifiedEnvironment = environment;
+    
+    // First reload the config to get the latest version
+    this.config = this.loadConfig();
+    
     // Check if the environment exists in the config
     if (!this.config.environments[environment]) {
       console.error(`Environment '${environment}' does not exist`);
@@ -128,6 +158,12 @@ class FeatureFlags {
    */
   removeUser(flagName, userId, env = null) {
     const environment = env || this.environment;
+    
+    // Track which environment we're modifying for the saveConfig method
+    this.modifiedEnvironment = environment;
+    
+    // First reload the config to get the latest version
+    this.config = this.loadConfig();
     
     // Check if the environment exists in the config
     if (!this.config.environments[environment]) {
@@ -175,6 +211,12 @@ class FeatureFlags {
    */
   setEnabled(flagName, enabled, env = null) {
     const environment = env || this.environment;
+    
+    // Track which environment we're modifying for the saveConfig method
+    this.modifiedEnvironment = environment;
+    
+    // First reload the config to get the latest version
+    this.config = this.loadConfig();
     
     // Check if the environment exists in the config
     if (!this.config.environments[environment]) {

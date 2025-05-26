@@ -2,6 +2,12 @@
 
 A simple feature flag implementation for managing feature toggles across different environments.
 
+## Changes in v1.1.0
+
+- Fixed environment handling in the CLI to ensure commands target the correct environment
+- Improved concurrent modification handling to prevent data loss when multiple processes access the config
+- Added explicit environment passing to CLI commands for better reliability
+
 ## Overview
 
 This feature flag system allows you to control access to features across different environments:
