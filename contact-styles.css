@@ -1,0 +1,116 @@
+/* Contact Us Page Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+p {
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    color: #666;
+}
+
+/* Contact Us Button - Royal Purple */
+.contact-us-btn {
+    background-color: #663399; /* Royal Purple */
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 51, 153, 0.3);
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-us-btn:hover {
+    background-color: #7b4ba6; /* Lighter royal purple on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 51, 153, 0.4);
+}
+
+.contact-us-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(102, 51, 153, 0.3);
+}
+
+.contact-us-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.2);
+}
+
+/* Contact Information Section */
+.contact-info {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.contact-info h2 {
+    color: #663399;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 400;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #555;
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .contact-us-btn {
+        padding: 12px 30px;
+        font-size: 1.1em;
+    }
+    
+    .contact-info p {
+        text-align: center;
+    }
+}
