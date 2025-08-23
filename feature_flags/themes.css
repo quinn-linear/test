@@ -1,0 +1,105 @@
+/**
+ * Theme Styles
+ * 
+ * This file contains CSS for the different themes available in the application.
+ * New themes are only available to users who have the 'new_themes' feature flag enabled.
+ */
+
+/* Base theme (default) */
+.theme-default {
+  --primary-color: #4a90e2;
+  --secondary-color: #50e3c2;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --link-color: #2a6ac8;
+  --border-color: #e0e0e0;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --warning-color: #ffc107;
+}
+
+/* Light theme */
+.theme-light {
+  --primary-color: #4a90e2;
+  --secondary-color: #50e3c2;
+  --background-color: #f5f5f5;
+  --text-color: #333333;
+  --link-color: #2a6ac8;
+  --border-color: #e0e0e0;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --warning-color: #ffc107;
+}
+
+/* Dark theme */
+.theme-dark {
+  --primary-color: #5c9dff;
+  --secondary-color: #5effdd;
+  --background-color: #222222;
+  --text-color: #f0f0f0;
+  --link-color: #6db0ff;
+  --border-color: #444444;
+  --success-color: #39e066;
+  --error-color: #ff5757;
+  --warning-color: #ffde59;
+}
+
+/* High contrast theme - only available with new_themes feature flag */
+.theme-high-contrast {
+  --primary-color: #ffffff;
+  --secondary-color: #ffff00;
+  --background-color: #000000;
+  --text-color: #ffffff;
+  --link-color: #00ffff;
+  --border-color: #ffffff;
+  --success-color: #00ff00;
+  --error-color: #ff0000;
+  --warning-color: #ffff00;
+}
+
+/* Sepia theme - only available with new_themes feature flag */
+.theme-sepia {
+  --primary-color: #704214;
+  --secondary-color: #a67c52;
+  --background-color: #f4ecd8;
+  --text-color: #5b4636;
+  --link-color: #986c41;
+  --border-color: #d3c6a6;
+  --success-color: #4a7023;
+  --error-color: #a02c2c;
+  --warning-color: #b7832f;
+}
+
+/* Apply theme variables to elements */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+}
+
+button, .button {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: 1px solid var(--border-color);
+}
+
+input, select, textarea {
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.success {
+  color: var(--success-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.warning {
+  color: var(--warning-color);
+}

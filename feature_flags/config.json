@@ -1,0 +1,30 @@
+{
+  "environments": {
+    "production": {
+      "flags": {
+        "new_themes": {
+          "enabled": true,
+          "users": [
+            "b1deab3f-31a9-4fdf-8885-9e5636fc7845"
+          ]
+        }
+      }
+    },
+    "staging": {
+      "flags": {
+        "new_themes": {
+          "enabled": false,
+          "users": []
+        }
+      }
+    },
+    "development": {
+      "flags": {
+        "new_themes": {
+          "enabled": true,
+          "users": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "feature-flags",
+  "version": "1.0.0",
+  "description": "Feature flag system for managing application features",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example": "node usage_example.js",
+    "cli": "node cli.js"
+  },
+  "keywords": [
+    "feature",
+    "flag",
+    "toggle",
+    "themes"
+  ],
+  "author": "",
+  "license": "MIT"
+}
